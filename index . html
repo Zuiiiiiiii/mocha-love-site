@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For yoU my LoVe...💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+width:100%;
+height:100vh;
+overflow:hidden;
+font-family:'Quicksand',sans-serif;
+background:linear-gradient(to bottom,#fff,#ffd6e7);
+position:relative;
+}
+
+/* Screens */
+
+.screen{
+position:absolute;
+width:100%;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+text-align:center;
+}
+
+.hidden{
+display:none;
+}
+
+/* Bear */
+
+.bear{
+width:200px;
+margin-bottom:20px;
+animation:floatBear 3s ease-in-out infinite;
+filter:drop-shadow(0 0 15px rgba(255,182,193,.7));
+}
+
+@keyframes floatBear{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-15px);}
+100%{transform:translateY(0px);}
+}
+
+/* Heading */
+
+h1{
+font-family:'Pacifico',cursive;
+font-size:38px;
+color:#ff4f87;
+margin-bottom:15px;
+}
+
+/* Text */
+
+.love-text{
+max-width:340px;
+padding:18px;
+border-radius:20px;
+background:rgba(255,255,255,.45);
+backdrop-filter:blur(10px);
+font-size:18px;
+line-height:1.8;
+color:#444;
+box-shadow:0 0 15px rgba(255,192,203,.4);
+}
+
+/* Buttons */
+
+.buttons{
+margin-top:25px;
+position:relative;
+}
+
+button{
+border:none;
+padding:14px 28px;
+border-radius:40px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+margin:10px;
+}
+
+#yes{
+background:#ff77aa;
+color:white;
+box-shadow:0 0 15px rgba(255,105,180,.5);
+}
+
+#no{
+background:white;
+color:#ff4f87;
+position:absolute;
+left:120px;
+}
+
+/* Hearts */
+
+.heart{
+position:absolute;
+bottom:-20px;
+color:pink;
+animation:floatUp linear infinite;
+pointer-events:none;
+}
+
+@keyframes floatUp{
+0%{
+transform:translateY(0) scale(1);
+opacity:0;
+}
+30%{
+opacity:1;
+}
+100%{
+transform:translateY(-120vh) scale(1.5);
+opacity:0;
+}
+}
+
+/* Heartbeat */
+
+.heartbeat{
+animation:heartbeat 1.2s infinite;
+}
+
+@keyframes heartbeat{
+0%{transform:scale(1);}
+25%{transform:scale(1.08);}
+50%{transform:scale(1);}
+75%{transform:scale(1.1);}
+100%{transform:scale(1);}
+}
+
+/* Typing */
+
+.typing::after{
+content:"|";
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+50%{
+opacity:0;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9b7b87.mp3">
+</audio>
+
+<!-- SCREEN 1 -->
+
+<div class="screen" id="first">
+
+<img
+id="bear"
+class="bear"
+src="https://media.tenor.com/bmwd7zs5i7AAAAAi/mocha-bear-hearts.gif"
+>
+
+<h1 id="question">
+Do you love me?...🥹
+</h1>
+
+<div class="buttons">
+<button id="yes">Yes💗</button>
+<button id="no">No💔</button>
+</div>
+
+</div>
+
+<!-- SCREEN 2 -->
+
+<div class="screen hidden" id="second">
+
+<img
+class="bear"
+src="https://media.tenor.com/5mbE7K8bq8MAAAAi/milk-and-mocha.gif"
+>
+
+<h1 class="heartbeat">
+I knew it...😃💗
+</h1>
+
+<p class="love-text">
+I knew you would choose me…🥺
+</p>
+
+<button id="next1">
+Next...💌
+</button>
+
+</div>
+
+<!-- SCREEN 3 -->
+
+<div class="screen hidden" id="third">
+
+<img
+class="bear"
+src="https://media.tenor.com/Wlp4L6TmhkAAAAAi/mocha-bear.gif"
+>
+
+<h1>
+Hug Hug..🤍
+</h1>
+
+<p class="love-text">
+You are mine and no one else's...💗
+</p>
+
+<button id="next2">
+More...✨
+</button>
+
+</div>
+
+<!-- SCREEN 4 -->
+
+<div class="screen hidden" id="fourth">
+
+<img
+class="bear"
+src="https://media.tenor.com/5mbE7K8bq8MAAAAi/milk-and-mocha.gif"
+>
+
+<h1>
+You did this...🥺
+</h1>
+
+<p class="love-text">
+I don't think you.. understand what you just did...<br><br>
+You made my whole world feel lighter...✨
+</p>
+
+<button id="next3">
+Next🤍
+</button>
+
+</div>
+
+<!-- FINAL -->
+
+<div class="screen hidden" id="final">
+
+<img
+class="bear"
+src="https://media.tenor.com/5mbE7K8bq8MAAAAi/milk-and-mocha.gif"
+>
+
+<p id="finalText"
+class="love-text typing">
+</p>
+
+</div>
+
+<script>
+
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+
+const first = document.getElementById("first");
+const second = document.getElementById("second");
+const third = document.getElementById("third");
+const fourth = document.getElementById("fourth");
+const final = document.getElementById("final");
+
+const next1 = document.getElementById("next1");
+const next2 = document.getElementById("next2");
+const next3 = document.getElementById("next3");
+
+const question = document.getElementById("question");
+const music = document.getElementById("music");
+
+const messages = [
+"Are you sure...?🥺",
+"Think again...💔",
+"That hurt me...",
+"You're breaking my tiny heart...",
+"Still no...?😭"
+];
+
+let count = 0;
+let size = 18;
+
+/* NO BUTTON */
+
+noBtn.onclick = () => {
+
+question.innerText =
+messages[count % messages.length];
+
+const x =
+Math.random() *
+(window.innerWidth - 120);
+
+const y =
+Math.random() *
+(window.innerHeight - 120);
+
+noBtn.style.left = x + "px";
+noBtn.style.top = y + "px";
+
+size += 5;
+
+yesBtn.style.fontSize =
+size + "px";
+
+count++;
+
+};
+
+/* YES BUTTON */
+
+yesBtn.onclick = () => {
+
+first.classList.add("hidden");
+
+setTimeout(()=>{
+second.classList.remove("hidden");
+},500);
+
+};
+
+/* FLOW */
+
+next1.onclick = () => {
+
+second.classList.add("hidden");
+
+setTimeout(()=>{
+third.classList.remove("hidden");
+},400);
+
+};
+
+next2.onclick = () => {
+
+third.classList.add("hidden");
+
+setTimeout(()=>{
+fourth.classList.remove("hidden");
+},400);
+
+};
+
+next3.onclick = () => {
+
+fourth.classList.add("hidden");
+
+setTimeout(()=>{
+final.classList.remove("hidden");
+typeWriter();
+},400);
+
+};
+
+/* HEARTS */
+
+function createHeart(){
+
+const heart =
+document.createElement("div");
+
+heart.className = "heart";
+
+heart.innerHTML = "❤";
+
+heart.style.left =
+Math.random()*100 + "vw";
+
+heart.style.fontSize =
+(10 + Math.random()*25) + "px";
+
+heart.style.animationDuration =
+(4 + Math.random()*4) + "s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},8000);
+
+}
+
+setInterval(createHeart,300);
+
+/* MUSIC */
+
+document.body.addEventListener("click",()=>{
+
+music.play().catch(()=>{});
+
+},{once:true});
+
+/* FINAL TYPING */
+
+const finalText =
+document.getElementById("finalText");
+
+const message = `
+So now you're stuck with me... okay?..🤍
+
+You stole my heart...
+but I'll let you keep it..💗
+
+In everything you do...
+I will always be there with you..✨
+`;
+
+let i = 0;
+
+function typeWriter(){
+
+if(i < message.length){
+
+finalText.innerHTML +=
+message.charAt(i);
+
+i++;
+
+setTimeout(typeWriter,35);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
